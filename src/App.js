@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import TodoList from "./TodoList";
+import { v4 as uuidv4 } from 'uuid';
 
 function App() {
   const [todos, setTodos] = useState([
@@ -10,14 +11,19 @@ function App() {
 
   const handleAddTodo = () => {
     const name = todoNameRef.current.value;
+    setTodos((prevTodos) => {
+      return [...prevTodos, { id: uuidv4(), name: name, completed: false }];
+    });
+    todoNameRef.current.value = null;
   };
 
   return (
     <>
-      <TodoList todos={todos} />
       <input type="text" ref={todoNameRef} />
       <button onClick={handleAddTodo}>タスクを追加</button>
       <button>完了したタスクの削除</button>
+      <TodoList todos={todos} />
+      
       <div>残りのタスク: 0</div>
     </>
   );
