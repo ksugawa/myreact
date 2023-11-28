@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
-import TodoList from "./TodoList";
+import TodoList from "./components/TodoList.js";
 import { v4 as uuidv4 } from 'uuid';
+import "./App.css"
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -9,10 +10,11 @@ function App() {
 
   const handleAddTodo = () => {
     const name = todoNameRef.current.value;
-    if(name === "") return;
-    setTodos((prevTodos) => {
-      return [...prevTodos, { id: uuidv4(), name: name, completed: false }];
-    });
+    if (name === "") return;
+    setTodos((prevTodos) => [
+      ...prevTodos, 
+      { id: uuidv4(), name: name, completed: false },
+    ]);
     todoNameRef.current.value = null;
   };
 
@@ -23,16 +25,15 @@ function App() {
     setTodos(newTodos);
   };
 
-  const handleClear = () => {
-    const newTodos = todos.filter((todo) => !todo.completed);
-    setTodos(newTodos);
-  }
-
   return (
     <>
-      <input type="text" ref={todoNameRef} />
-      <button onClick={handleAddTodo}>タスクを追加</button>
-      <button onClick={handleClear}>完了したタスクの削除</button>
+      <h1>ToDo List</h1>
+      <input 
+        type="text" 
+        ref={todoNameRef} 
+        placeholder="新しいTodoを追加"
+      />
+      <button onClick={handleAddTodo}>＋</button>
       <TodoList todos={todos} toggleTodo={toggleTodo}/>
       
       <div>残りのタスク: {todos.filter((todo) => !todo.completed).length}</div>
