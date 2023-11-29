@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import TodoList from "./components/TodoList.js";
-import { v4 as uuidv4 } from 'uuid';
-import "./App.css"
+import { v4 as uuidv4 } from "uuid";
+import "./App.css";
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -12,7 +12,7 @@ function App() {
     const name = todoNameRef.current.value;
     if (name === "") return;
     setTodos((prevTodos) => [
-      ...prevTodos, 
+      ...prevTodos,
       { id: uuidv4(), name: name, completed: false },
     ]);
     todoNameRef.current.value = null;
@@ -28,14 +28,15 @@ function App() {
   return (
     <>
       <h1>ToDo List</h1>
-      <input 
-        type="text" 
-        ref={todoNameRef} 
-        placeholder="新しいTodoを追加"
-      />
+      <input type="text" ref={todoNameRef} placeholder="新しいTodoを追加" />
       <button onClick={handleAddTodo}>＋</button>
-      <TodoList todos={todos} toggleTodo={toggleTodo}/>
-      
+      <div className="todo-list">
+        <TodoList 
+          todos={todos} 
+          toggleTodo={toggleTodo} 
+        />
+      </div>
+
       <div>残りのタスク: {todos.filter((todo) => !todo.completed).length}</div>
     </>
   );

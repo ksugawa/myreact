@@ -6,21 +6,21 @@ const Todo = ({ todo, toggleTodo, onDelete }) => {
   };
 
   const handleClear = () => {
-    onDelete(todo.id)
+    onDelete(todo.id);
   };
 
   return (
     <div className="todo">
-      <label>
-        <input
-          type="checkbox"
-          checked={todo.completed}
-          readOnly
-          onChange={handleTodoClick}
-        />
-      </label>
-      {todo.name}
-      <button onClick={handleClear}>×</button>
+      <input
+        type="checkbox"
+        checked={todo.completed}
+        readOnly
+        onChange={handleTodoClick}
+      />
+      <label className="todo-checkbox">{todo.name}</label>
+      <button 
+        onClick={handleClear}
+        className="icon-delete">×</button>
     </div>
   );
 };

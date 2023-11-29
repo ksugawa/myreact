@@ -1,5 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap");
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   position: relative;
   margin: 0;
@@ -16,9 +22,43 @@ body {
   color: #db3545;
 }
 
+.todo-list {
+  margin: 1rem 0;
+}
+
+.todo {
+  margin: 8px 0;
+  padding: 4px 0;
+  position: relative;
+}
+
 input[type=text] {
-  background: #d8d8d8;
+  background: #E1E0E0;
   border: none;
   padding: 4px;
   padding: 8px 4px;
+}
+
+input[type=checkbox] {
+  display: none;
+}
+
+.todo-checkbox {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  margin-left: 3rem;
+}
+
+.todo-checkbox::before {
+  content: '';
+  position: absolute;
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  padding: 4px;
+  border-radius: 999px;
+  border: 2px solid #93D94E;
+  top: -2px;
+  left: -3rem;
 }
